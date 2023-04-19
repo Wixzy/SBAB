@@ -42,6 +42,7 @@ public class BusLines {
         } catch (IOException e) {
             System.out.println("An error occurred while calling the SL Stops and Lines 2 API: " + e.getMessage());
             e.printStackTrace();
+            System.exit(99);
         }
 
         // Parse the API response JSON
@@ -51,6 +52,7 @@ public class BusLines {
             journeyPatternPointOnLineArray = jsonResponse.getJSONArray("ResponseData");
         } catch (JSONException e) {
             System.out.printf("Too many API request has been made. Better luck next time, if you wait long enough...");
+            System.exit(99);
         }
 
         // Count the occurrence of each LineNumber
@@ -74,6 +76,7 @@ public class BusLines {
             int count = entry.getValue();
             System.out.printf("%s: %d\n", lineNumber, count);
         }
+        System.exit(0);
     }
 }
 
